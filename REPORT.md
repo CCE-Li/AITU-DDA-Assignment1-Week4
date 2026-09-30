@@ -313,6 +313,8 @@ object graph, and the chart is `results/plots/memory_vs_n.png`.
 | 10 000 | 41 040 B (4.10 B/elem) | 240 072 B (24.01 B/elem) | 41 040 B (4.10 B/elem) |
 | 100 000 | 655 440 B (6.55 B/elem) | 2 400 072 B (24.00 B/elem) | 655 440 B (6.55 B/elem) |
 
+![Memory vs n](results/plots/memory_vs_n.png)
+
 The list costs exactly **24.00 bytes per element**: a 12-byte object header plus a 4-byte `int`
 value plus a 4-byte compressed `next` reference is 20 bytes, which the JVM rounds up to the next
 8-byte boundary, so 4 bytes of payload carry 20 bytes of overhead and alignment waste (6x). The
@@ -335,6 +337,11 @@ same array, and both are timed with one warm-up run plus the median of five meas
 | random | 100 000 | 2.683 ms, 227 941 comparisons | 2.531 ms, 187 995 comparisons |
 | descending | 10 000 | 0.361 ms, 113 631 comparisons | 0.190 ms, 19 982 comparisons |
 | descending | 100 000 | 4.753 ms, 1 468 946 comparisons | 0.918 ms, 199 978 comparisons |
+
+![buildHeap random time](results/plots/buildheap_random_time_vs_n.png)
+![buildHeap random comparisons](results/plots/buildheap_random_comparisons_vs_n.png)
+![buildHeap descending time](results/plots/buildheap_descending_time_vs_n.png)
+![buildHeap descending comparisons](results/plots/buildheap_descending_comparisons_vs_n.png)
 
 The two input orders tell different stories, and this is the interesting part. On **random** data
 the n insertions are *not* Θ(n log n) in practice: a new value stops bubbling after 1.6 levels on
