@@ -34,12 +34,34 @@ The command produces:
 | `results/memory.csv`, `results/plots/memory_vs_n.png` | Bonus A, measured with JOL |
 | `results/buildheap.csv`, `results/plots/buildheap_*.png` | Bonus B, Floyd's `buildHeap` against n inserts |
 
-The same run can be started from the jar:
+The same run can be started from the jar, which is self-contained (the dependencies are shaded
+in, so no classpath setup is needed):
 
 ```bash
 mvn -q package
 java -jar target/daa-assignment2.jar
 ```
+
+Both ways must be started from the project root — the benchmark writes `results/` relative to the
+working directory.
+
+### Run from IntelliJ IDEA
+
+Open the project folder; IDEA detects `pom.xml` as a Maven project and imports it. Then either
+
+* open `src/main/java/daa/benchmark/Main.java` and press the green run arrow (the default working
+  directory is already the project root), or
+* run the tests with a right-click on `src/test/java` → *Run 'All Tests'*, or
+* use the Maven tool window: *Plugins* → *exec* → *exec:java*.
+
+If the terminal reports `The JAVA_HOME environment variable is not defined correctly`, point it at
+a JDK 21 installation and reopen the terminal:
+
+```bash
+setx JAVA_HOME "C:\Program Files\Java\jdk-21.0.11"
+```
+
+Running `java -jar ...` does not need `JAVA_HOME`.
 
 ## Layout
 
